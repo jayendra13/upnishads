@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .shlokas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 22px;
+        }
+    </style>
 </head>
+
 <body>
 
-    {% for shloka in shlokas %}
-    <p>{{shloka}}</p>
-    {% endfor %}
+    <div class="shlokas">
+        {% for shloka in shlokas %}
+            <p>{{shloka}}</p>
+        {% endfor %}
+    </div>
 
 </body>
 </html>

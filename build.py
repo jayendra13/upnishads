@@ -15,10 +15,23 @@ def get_data(fname):
     return data
 
 
+def add_line_break(sentence):
+    ix = sentence.index("।")
+    l1 = sentence[:ix+2]
+    l2 = sentence[ix+2:]
+    return l1 + "<br>" + l2
+
+
+def process_data(data):
+    shlokas = [add_line_break(shloka) for shloka in data["shlokas"]]
+    return {"shlokas": shlokas}
+
+
 if __name__ == '__main__':
 
     template = get_template()
     data = get_data("data.json")
+    data = process_data(data)
 
     with open("index.html", "w") as f:
         f.write(template.render(**data))

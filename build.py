@@ -15,15 +15,24 @@ def get_data(fname):
     return data
 
 
-def add_line_break(sentence):
-    ix = sentence.index("।")
-    l1 = sentence[:ix+2]
-    l2 = sentence[ix+2:]
-    return l1 + "<br>" + l2
+def split_to_lines(shloka):
+    ix = shloka.index("।")
+    l1 = shloka[:ix + 2]
+    l2 = shloka[ix + 2:]
+    return [l1,l2]
+
+
+def split_to_words(shloka):
+    shloka_ = []
+    for line in shloka:
+        shloka_.append(line.split(" "))
+    return shloka_
 
 
 def process_data(data):
-    shlokas = [add_line_break(shloka) for shloka in data["shlokas"]]
+    shlokas = data["shlokas"]
+    shlokas = map(split_to_lines, shlokas)
+    shlokas = map(split_to_words, shlokas)
     return {"shlokas": shlokas}
 
 
